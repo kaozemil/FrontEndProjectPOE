@@ -1,0 +1,92 @@
+body {
+    background: black;
+    color: #a38d6d;
+    padding: 0;
+    margin: 0;
+    font-family: "Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+    position: relative;
+    cursor: default;
+}
+
+html, body {
+    font-size: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    color: #cec59f;
+    text-rendering: optimizeLegibility;
+    margin-top: .2em;
+    margin-bottom: .5em;
+    line-height: 1.2125em;
+}
+
+h3 {
+    font-size: 1.375em;
+    padding-left:12em
+}
+
+h3 {
+    display: block;
+    font-size: 1.17em;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    font-weight: bold;
+}
+
+hr {
+    border: solid #302e2e;
+    border-width: 1px 0 0;
+    clear: both;
+    margin: 1.25em 0 1.1875em;
+    height: 0;
+}
+
+.border {
+    border: solid #302e2e;
+    border-width: 1px 0 0;
+    clear: both;
+    margin: 1.25em 0 1.1875em;
+    height: 0;
+}
+
+label {
+    font-size: .875em;
+    color: #a79070;
+    cursor: pointer;
+    display: block;
+    font-weight: 500;
+    margin-bottom: .1875em;
+}
+
+div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, p, blockquote, th, td {
+    margin: 0;
+    padding: 0;
+    direction: ltr;
+}
+
+h3 {
+    padding-left:6em;
+}
+
+div {
+    display: block;
+}
+
+form {
+    margin: 0 0 1em;
+}
+
+
+
+
+
+
+
