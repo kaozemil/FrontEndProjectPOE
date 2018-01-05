@@ -12,11 +12,10 @@
 </h:head>
 <h:body style="background-color: black">
     <div>
-        <h1 style="padding-top: 1em">Path of Exile Services</h1>
+        <h1 style="padding-top: 1em; padding-left: 1em">Path of Exile Services</h1>
         <hr></hr>
     </div>
-    <p:layout style="height: 100%; background-color: black">
-        <p:layoutUnit position="west" resizable="false" size="300" style="background-color: black; height: 100%">
+
 
             <div style="background-color: black">
                 <h:form id="search" style="background-color: black">
@@ -24,9 +23,11 @@
                     <p:panel style="background-color: #383838;">
                         <h:panelGrid style="background-color: #383838" width="95%">
                             <p:outputLabel for="League" value="League"></p:outputLabel>
-                            <p:selectOneMenu id="League" value="#{dropdownView.leagueList}" style="width: 95%">
-                                <f:selectItem itemLabel="Select League" itemValue="" noSelectionOption="true" ></f:selectItem>
-                                <f:selectItems value="#{dropdownView.leagueList}"></f:selectItems>
+                            <p:selectOneMenu id="League" value="#{endPoint.league}" style="width: 95%">
+                                <f:selectItem itemValue="Abyss" itemLabel="Abyss" ></f:selectItem>
+                                <f:selectItem itemValue="Hardcore Abyss" itemLabel="Hardcore Abyss"></f:selectItem>
+                                <f:selectItem itemValue="Hardcore" itemLabel="Hardcore"></f:selectItem>
+                                <f:selectItem itemValue="Standard" itemLabel="Standard"></f:selectItem>
                             </p:selectOneMenu>
                         </h:panelGrid>
                     </p:panel>
@@ -34,35 +35,59 @@
 
                 <div style="background-color: black">
                     <p:panel style="background-color: #383838">
-                        <h:panelGrid cellpadding="10" style="background-color: #383838" width="95%">
+                        <h:panelGrid style="background-color: #383838" width="95%">
                             <p:outputLabel for="Service" value="Service"></p:outputLabel>
-                            <p:selectOneMenu id="Service" value="#{dropdownView.serviceList}" style="width: 95%">
-                                <f:selectItem itemLabel="Select Service" itemValue="" noSelectionOption="true"></f:selectItem>
-                                <f:selectItems value="#{dropdownView.serviceList}"></f:selectItems>
+                            <p:selectOneMenu id="Service" value="#{endPoint.serviceType}" style="width: 95%">
+                                <f:selectItem itemValue="boosting" itemLabel="Boosting" ></f:selectItem>
+                                <f:selectItem itemValue="crafting" itemLabel="Crafting"></f:selectItem>
+                                <f:selectItem itemValue="rotation" itemLabel="Rotation"></f:selectItem>
+                                <f:selectItem itemValue="teaming" itemLabel="Teaming"></f:selectItem>
                             </p:selectOneMenu>
                         </h:panelGrid>
                     </p:panel>
                 </div>
-                    <hr></hr>
                 <div>
-                    <p:commandButton value="Submit" icon="ui-icon-check" style="color: gray; margin-left: 2em" ></p:commandButton>
+                    <p:commandButton value="Search" action="#{endPoint.loadServices}" update="serviceForm" icon="ui-icon-disc" style="color: gray; margin-left: 2em; margin-top: 1em" ></p:commandButton>
+                    <hr></hr>
                 </div>
 
                 </h:form>
 
             </div>
 
-        </p:layoutUnit>
 
-        <p:layoutUnit position="center" style="background-color: black">
-            <div style="background-color: black">
-                <h3>STUFF HERE</h3>
-            SERVICE 1
-            SERVICE 2
+            <div style="background-color: black" id="resultBox">
+                <div>
+                    <h:form id="serviceForm">
+                        <h2 style="padding-left: 1em">Available Services // #{endPoint.league} (#{endPoint.results} results)</h2>
+
+                        <p:dataTable id="serviceList" value="#{endPoint.services}" var="currentService" scrollable="true" scrollHeight="211">
+
+                            <p:column headerText="Service">
+                                <f:facet name = "Service">Service</f:facet>
+                                <h:outputText value="#{currentService.serviceType}"/>
+                            </p:column>
+
+
+                            <p:column headerText="Title">
+                                <f:facet name = "Title">Title</f:facet>
+                                <h:outputText value="#{currentService.title}"/>
+                            </p:column>
+
+              <!-->              <p:column headerText="League">
+                                <f:facet name = "League">League</f:facet>
+                                <h:outputText value="#{currentService.league}"/>
+                            </p:column>
+</!-->
+                            <p:column headerText="IGN">
+                                <f:facet name = "inGameName">IGN</f:facet>
+                                <h:outputText value="#{currentService.inGameName}"/>
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+                </div>
             </div>
-        </p:layoutUnit>
 
-</p:layout>
 </h:body>
 
 </html>

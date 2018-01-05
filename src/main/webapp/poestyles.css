@@ -6,8 +6,6 @@ body {
     font-family: "Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
     font-weight: normal;
     font-style: normal;
-    line-height: 1;
-    position: relative;
     cursor: default;
 }
 
@@ -32,12 +30,7 @@ h3 {
 }
 
 h3 {
-    display: block;
     font-size: 1.17em;
-    -webkit-margin-before: 1em;
-    -webkit-margin-after: 1em;
-    -webkit-margin-start: 0px;
-    -webkit-margin-end: 0px;
     font-weight: bold;
 }
 
@@ -66,23 +59,15 @@ label {
     margin-bottom: .1875em;
 }
 
-div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, p, blockquote, th, td {
-    margin: 0;
-    padding: 0;
-    direction: ltr;
-}
-
 h3 {
     padding-left:6em;
 }
 
-div {
-    display: block;
+.ui-outputlabel{
+    color:dimgray;
 }
 
-form {
-    margin: 0 0 1em;
-}
+
 
 
 
