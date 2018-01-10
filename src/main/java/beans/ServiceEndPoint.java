@@ -1,15 +1,13 @@
 package beans;
 
+import org.codehaus.jackson.map.ObjectMapper;
 import org.primefaces.json.JSONArray;
 import org.primefaces.json.JSONObject;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.ws.rs.core.MediaType;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Serializable;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -31,14 +29,16 @@ public class ServiceEndPoint implements Serializable{
 
     private Service service;
     private ArrayList<Service> services;
-    private String serviceType ="";
-    private String league ="";
+    private String serviceType;
+    private String league;
+    private String inGameName;
+    private String title;
     private int results = 0;
+    private int removeDate;
 
 
     public void loadServices() throws IOException{
-
-        String getServicesURL = "http://194.28.123.207:8080/poe.service/resource/service/"+serviceType;
+        String getServicesURL = "http://194.28.123.207:8080/poe.service/resource/service?serviceType="+serviceType+"&league="+league;
         services = new ArrayList<Service>();
 
         //Opel url connection and set crud property
@@ -67,7 +67,7 @@ public class ServiceEndPoint implements Serializable{
             JSONObject currentService = jsonArray.getJSONObject(i);
             service = new Service();
             service.setInGameName(currentService.getString("inGameName"));
-           // service.setLeague(currentService.getString("league"));
+            service.setLeague(currentService.getString("league"));
             service.setServiceType(currentService.getString("serviceType"));
             service.setTitle(currentService.getString("title"));
 
@@ -75,6 +75,30 @@ public class ServiceEndPoint implements Serializable{
         }} else {
             services.clear();
             results = 0;
+        }
+    }
+
+    public void createService() throws IOException{
+        String createServiceURL = "http://194.28.123.207:8080/poe.service/resource/service";
+
+        service = new Service();
+        service.setTitle(title);
+        service.setServiceType(serviceType);
+        service.setLeague(league);
+        service.setInGameName(inGameName);
+        service.setRemoveDate(5);
+
+        //Opel url connection and set crud property
+        HttpURLConnection postUrlConnection = getHttpURLConnection(createServiceURL, "POST");
+
+        ObjectMapper mapper = new ObjectMapper();
+        String jsonUser = mapper.writeValueAsString(service);
+
+        PrintWriter out = new PrintWriter(postUrlConnection.getOutputStream());
+        out.println(jsonUser);
+        out.close();
+        if(postUrlConnection.getResponseCode()!=200){
+            throw new IOException("API Error. Incorrect response from server.");
         }
 
     }
@@ -128,5 +152,21 @@ public class ServiceEndPoint implements Serializable{
 
     public void setResults(int results) {
         this.results = results;
+    }
+
+    public String getInGameName() {
+        return inGameName;
+    }
+
+    public void setInGameName(String inGameName) {
+        this.inGameName = inGameName;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

@@ -5,59 +5,115 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:p="http://primefaces.org/ui" xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core"
       xml:lang="en" lang="en">
+
 <h:head>
     <meta name="viewport" content="width-device-width"></meta>
-    <title>Poe Services</title>
     <link rel="stylesheet" type="text/css" href="poestyles.css"></link>
+
+    <title>Poe Services</title>
 </h:head>
+
 <h:body style="background-color: black">
+
     <div>
         <h1 style="padding-top: 1em; padding-left: 1em">Path of Exile Services</h1>
         <hr></hr>
     </div>
 
+    <div style="background-color: black">
+        <h:form id="serviceSearch" style="background-color: black">
+            <div>
+                <p:panel style="background-color: #383838;">
+                    <h:panelGrid style="background-color: #383838" width="95%">
+                        <p:outputLabel for="League" value="League"></p:outputLabel>
+                        <p:selectOneMenu id="League" value="#{endPoint.league}" style="width: 95%">
+                            <f:selectItem itemValue="Abyss" itemLabel="Abyss" ></f:selectItem>
+                            <f:selectItem itemValue="HardcoreAbyss" itemLabel="Hardcore Abyss"></f:selectItem>
+                            <f:selectItem itemValue="Hardcore" itemLabel="Hardcore"></f:selectItem>
+                            <f:selectItem itemValue="Standard" itemLabel="Standard"></f:selectItem>
+                        </p:selectOneMenu>
+                    </h:panelGrid>
+                </p:panel>
+            </div>
 
             <div style="background-color: black">
-                <h:form id="search" style="background-color: black">
-                    <div>
-                    <p:panel style="background-color: #383838;">
-                        <h:panelGrid style="background-color: #383838" width="95%">
-                            <p:outputLabel for="League" value="League"></p:outputLabel>
-                            <p:selectOneMenu id="League" value="#{endPoint.league}" style="width: 95%">
+                <p:panel style="background-color: #383838">
+                    <h:panelGrid style="background-color: #383838" width="95%">
+                        <p:outputLabel for="Service" value="Service"></p:outputLabel>
+                        <p:selectOneMenu id="Service" value="#{endPoint.serviceType}" style="width: 95%">
+                            <f:selectItem itemValue="Boosting" itemLabel="Boosting" ></f:selectItem>
+                            <f:selectItem itemValue="Crafting" itemLabel="Crafting"></f:selectItem>
+                            <f:selectItem itemValue="Rotation" itemLabel="Rotation"></f:selectItem>
+                            <f:selectItem itemValue="Teaming" itemLabel="Teaming"></f:selectItem>
+                        </p:selectOneMenu>
+                    </h:panelGrid>
+                </p:panel>
+            </div>
+
+            <div>
+                <p:commandButton value="Search" action="#{endPoint.loadServices}" update="serviceForm" icon="ui-icon-disc" style="color: gray; margin-left: 2em; margin-top: 1em" ></p:commandButton>
+                <hr></hr>
+            </div>
+
+        </h:form>
+
+    </div>
+
+    <div>
+        <h4 style="padding-left: 1.2em">Want to create your own Service? <a id="showHideCreationDiv" class="grabPromo" >Show</a> </h4>
+
+        <div id="creationDiv" style="display: none" class="slideDown">
+
+            <div>
+                <h:form>
+                    <div class="Container">
+                        <div class="FormDiv">
+                    <p:panel style="background-color: #383838; ">
+                        <h:panelGrid style="background-color: #383838" width="100%">
+                            <p:outputLabel for="createService" value="Service"></p:outputLabel>
+                            <p:selectOneMenu id="createService" value="#{endPoint.serviceType}" style="width: 37%">
+                                <f:selectItem itemValue="Boosting" itemLabel="Boosting" ></f:selectItem>
+                                <f:selectItem itemValue="Crafting" itemLabel="Crafting"></f:selectItem>
+                                <f:selectItem itemValue="Rotation" itemLabel="Rotation"></f:selectItem>
+                                <f:selectItem itemValue="Teaming" itemLabel="Teaming"></f:selectItem>
+                            </p:selectOneMenu>
+                            <hr></hr>
+                            <p:outputLabel for="createLeague" value="League"></p:outputLabel>
+                            <p:selectOneMenu id="createLeague" value="#{endPoint.league}" style="width: 37%">
                                 <f:selectItem itemValue="Abyss" itemLabel="Abyss" ></f:selectItem>
-                                <f:selectItem itemValue="Hardcore Abyss" itemLabel="Hardcore Abyss"></f:selectItem>
+                                <f:selectItem itemValue="HardcoreAbyss" itemLabel="Hardcore Abyss"></f:selectItem>
                                 <f:selectItem itemValue="Hardcore" itemLabel="Hardcore"></f:selectItem>
                                 <f:selectItem itemValue="Standard" itemLabel="Standard"></f:selectItem>
                             </p:selectOneMenu>
                         </h:panelGrid>
                     </p:panel>
                     </div>
+                        <div class="MenuContainer">
+                            <div class="MenuInnards">
+                                <p:panel style="background-color: #383838">
+                                <p:outputLabel for="titleInput" value="Title:"></p:outputLabel>
+                                <h:inputTextarea id="titleInput" value="#{endPoint.title}"></h:inputTextarea>
+                                <hr></hr>
+                                <p:outputLabel for="inGameNameInput" value="Ingame Name:"></p:outputLabel>
+                                <h:inputText id="inGameNameInput" value="#{endPoint.inGameName}"></h:inputText>
+                                </p:panel>
 
-                <div style="background-color: black">
-                    <p:panel style="background-color: #383838">
-                        <h:panelGrid style="background-color: #383838" width="95%">
-                            <p:outputLabel for="Service" value="Service"></p:outputLabel>
-                            <p:selectOneMenu id="Service" value="#{endPoint.serviceType}" style="width: 95%">
-                                <f:selectItem itemValue="boosting" itemLabel="Boosting" ></f:selectItem>
-                                <f:selectItem itemValue="crafting" itemLabel="Crafting"></f:selectItem>
-                                <f:selectItem itemValue="rotation" itemLabel="Rotation"></f:selectItem>
-                                <f:selectItem itemValue="teaming" itemLabel="Teaming"></f:selectItem>
-                            </p:selectOneMenu>
-                        </h:panelGrid>
-                    </p:panel>
-                </div>
-                <div>
-                    <p:commandButton value="Search" action="#{endPoint.loadServices}" update="serviceForm" icon="ui-icon-disc" style="color: gray; margin-left: 2em; margin-top: 1em" ></p:commandButton>
-                    <hr></hr>
-                </div>
+                                <p:commandButton style="margin-top: 1em; color: gray" id="createButton" value="Create" action="#{endPoint.createService}"></p:commandButton>
 
+                            </div>
+                        </div>
+                    </div>
                 </h:form>
-
+            </div>
+            <div id="messageDiv" style="display: none">
+                <h3 style="padding-left: 2em">[ Please fill out the form! ]</h3>
             </div>
 
+        </div>
+        <hr></hr>
+    </div>
 
             <div style="background-color: black" id="resultBox">
-                <div>
                     <h:form id="serviceForm">
                         <h2 style="padding-left: 1em">Available Services // #{endPoint.league} (#{endPoint.results} results)</h2>
 
@@ -68,26 +124,50 @@
                                 <h:outputText value="#{currentService.serviceType}"/>
                             </p:column>
 
-
                             <p:column headerText="Title">
                                 <f:facet name = "Title">Title</f:facet>
                                 <h:outputText value="#{currentService.title}"/>
                             </p:column>
 
-              <!-->              <p:column headerText="League">
-                                <f:facet name = "League">League</f:facet>
-                                <h:outputText value="#{currentService.league}"/>
-                            </p:column>
-</!-->
                             <p:column headerText="IGN">
                                 <f:facet name = "inGameName">IGN</f:facet>
                                 <h:outputText value="#{currentService.inGameName}"/>
                             </p:column>
                         </p:dataTable>
                     </h:form>
-                </div>
             </div>
 
-</h:body>
+    <script type="text/javascript">
+        jQuery.browser = {};
+        (function () {
+            jQuery.browser.msie = false;
+            jQuery.browser.version = 0;
+            if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+                jQuery.browser.msie = true;
+                jQuery.browser.version = RegExp.$1;
+            }
+        })();
+
+        $('.grabPromo').click(function(e){
+            $('.slideDown').slideToggle();
+            if($('#showHideCreationDiv').innerHTML ="Show") {
+                $('#showHideCreationDiv').innerHTML = "Hide";
+            }
+            else {
+                $('#showHideCreationDiv').innerHTML = ""
+            }
+        });
+
+        $("#createButton").click(function() {
+            if ($('#titleInput').val().length == 0) {
+                $('#messageDiv').show();
+            }
+            if ($('#ingamenameinput').val().length == 0) {
+                $('#messageDiv').show();
+            }
+        });
+    </script>
+
+        </h:body>
 
 </html>

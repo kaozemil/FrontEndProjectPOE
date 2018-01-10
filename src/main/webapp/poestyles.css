@@ -66,6 +66,28 @@ h3 {
 .ui-outputlabel{
     color:dimgray;
 }
+.astext {
+    background:none;
+    border:none;
+    margin:0;
+    padding:0;
+    cursor: pointer;
+    color: #cec59f;
+}
+
+.Container{max-width: 800px; width: 100%; display:table;}
+.CreateForm{display:table-cell; vertical-align:middle; width: 100%; max-width: 200px}
+.MenuContainer{vertical-align:middle; display:table-cell; width:400px;}
+.MenuInnards{float:right;}
+
+
+.ui-outputlabel{
+    color: #a79070;
+}
+
+.slideDown { background:black; display: none; }
+.grabPromo { cursor:pointer; }
+
 
 
 
