@@ -37,5 +37,6 @@
     <orderEntry type="library" name="Maven: org.codehaus.jackson:jackson-mapper-asl:1.9.13" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.jackson:jackson-core-asl:1.9.13" level="project" />
     <orderEntry type="library" name="Maven: org.primefaces:primefaces:6.1" level="project" />
+    <orderEntry type="library" name="clipboard" level="application" />
   </component>
 </module>

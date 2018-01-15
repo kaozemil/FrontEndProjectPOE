@@ -12,9 +12,9 @@
 
     <title>Poe Services</title>
 </h:head>
-
 <h:body style="background-color: black">
-
+<div class="content">
+    <div class="subContent">
     <div>
         <h1 style="padding-top: 1em; padding-left: 1em">Path of Exile Services</h1>
         <hr></hr>
@@ -50,7 +50,7 @@
                 </p:panel>
             </div>
 
-            <div>
+            <div style="background-color: #1F1F1F">
                 <p:commandButton value="Search" action="#{endPoint.loadServices}" update="serviceForm" icon="ui-icon-disc" style="color: gray; margin-left: 2em; margin-top: 1em" ></p:commandButton>
                 <hr></hr>
             </div>
@@ -61,10 +61,10 @@
 
     <div>
         <h4 style="padding-left: 1.2em">Want to create your own Service? <a id="showHideCreationDiv" class="grabPromo" >Show</a> </h4>
-
+        <h4 id="createSuccess" style="padding-left: 1.2em; color: green; display: none">&#10003; Created</h4>
         <div id="creationDiv" style="display: none" class="slideDown">
 
-            <div>
+            <div style="background-color: #1F1F1F">
                 <h:form>
                     <div class="Container">
                         <div class="FormDiv">
@@ -91,14 +91,14 @@
                         <div class="MenuContainer">
                             <div class="MenuInnards">
                                 <p:panel style="background-color: #383838">
-                                <p:outputLabel for="titleInput" value="Title:"></p:outputLabel>
+                                <p:outputLabel for="titleInput" value="Description:"></p:outputLabel>
                                 <h:inputTextarea id="titleInput" value="#{endPoint.title}"></h:inputTextarea>
                                 <hr></hr>
                                 <p:outputLabel for="inGameNameInput" value="Ingame Name:"></p:outputLabel>
                                 <h:inputText id="inGameNameInput" value="#{endPoint.inGameName}"></h:inputText>
                                 </p:panel>
 
-                                <p:commandButton style="margin-top: 1em; color: gray" id="createButton" value="Create" action="#{endPoint.createService}"></p:commandButton>
+                                <p:commandButton class="grabPromo" style="margin-top: 1em; color: gray" id="createButton" value="Create" action="#{endPoint.createService}" onclick="createSuccess()"></p:commandButton>
 
                             </div>
                         </div>
@@ -113,7 +113,7 @@
         <hr></hr>
     </div>
 
-            <div style="background-color: black" id="resultBox">
+            <div style="background-color: #1F1F1F" id="resultBox">
                     <h:form id="serviceForm">
                         <h2 style="padding-left: 1em">Available Services // #{endPoint.league} (#{endPoint.results} results)</h2>
 
@@ -124,20 +124,52 @@
                                 <h:outputText value="#{currentService.serviceType}"/>
                             </p:column>
 
-                            <p:column headerText="Title">
+                            <p:column headerText="Description">
                                 <f:facet name = "Title">Title</f:facet>
                                 <h:outputText value="#{currentService.title}"/>
                             </p:column>
 
                             <p:column headerText="IGN">
                                 <f:facet name = "inGameName">IGN</f:facet>
-                                <h:outputText value="#{currentService.inGameName}"/>
+                                <h:outputText id="inGameNameField" value="#{currentService.inGameName}" style="padding-right: 1em;"></h:outputText>
+                                <p id="hiddenCopy" style="display: none" >@#{currentService.inGameName} Hi, im responding to your service post, I would like to use/join your #{currentService.serviceType} service in #{currentService.league}.</p>
+                                <p:commandButton style="border: hidden; background-color: #a79070; float: right" id="btn" onclick="copyToClipboard('hiddenCopy')" value="Whisper"></p:commandButton>
+
                             </p:column>
                         </p:dataTable>
                     </h:form>
             </div>
 
+
     <script type="text/javascript">
+        function copyToClipboard(nameId) {
+
+            // Create a "hidden" input
+            var aux = document.createElement("input");
+
+            // Assign it the value of the specified element
+            aux.setAttribute("value", document.getElementById(nameId).innerHTML);
+
+            // Append it to the body
+            document.body.appendChild(aux);
+
+            // Highlight its content
+            aux.select();
+
+            // Copy the highlighted text
+            document.execCommand("copy");
+
+            // Remove it from the body
+            document.body.removeChild(aux);
+
+        }
+
+        function createSuccess(){
+            var cs = document.getElementById('createSuccess');
+            cs.style.display = "block";
+
+        }
+
         jQuery.browser = {};
         (function () {
             jQuery.browser.msie = false;
@@ -168,6 +200,9 @@
         });
     </script>
 
+    </div>
+</div>
         </h:body>
+
 
 </html>

@@ -7,6 +7,9 @@ import org.primefaces.json.JSONObject;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.ws.rs.core.MediaType;
+import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -111,6 +114,15 @@ public class ServiceEndPoint implements Serializable{
         connection.setRequestMethod(type);
         connection.setRequestProperty("Accept",MediaType.APPLICATION_JSON);
         return connection;
+    }
+
+    public String CollectInGameName(int serviceListIndex){
+        String gameName = services.get(serviceListIndex).getInGameName();
+        return gameName;
+    }
+
+    public void copyToClipboard(String gameName){
+
     }
 
 

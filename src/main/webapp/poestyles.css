@@ -88,6 +88,31 @@ h3 {
 .slideDown { background:black; display: none; }
 .grabPromo { cursor:pointer; }
 
+.content{
+    background-color: #0F0F0F;
+    border-left: 1px solid #302e2e;
+    border-right: 1px solid #302e2e;
+    border-bottom: 1px solid #302e2e;
+    padding-left: 1.2em;
+    max-width: 1000px;
+}
+
+.subContent{
+
+    background-color: #1F1F1F;
+    border-left: 1px solid #302e2e;
+    border-right: 1px solid #302e2e;
+    border-bottom: 1px solid #302e2e;
+
+    position: relative;
+    padding-left: 1.2em;
+    padding-right: 1.2em;
+    float: left;
+}
+
+.ui-outputtext{
+    color:#a79070;
+}
 
 
 
