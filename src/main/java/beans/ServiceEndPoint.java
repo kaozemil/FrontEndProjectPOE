@@ -37,7 +37,7 @@ public class ServiceEndPoint implements Serializable{
     private String inGameName;
     private String title;
     private int results = 0;
-    private int removeDate;
+    private long removeDate;
 
 
     public void loadServices() throws IOException{
@@ -89,13 +89,16 @@ public class ServiceEndPoint implements Serializable{
         service.setServiceType(serviceType);
         service.setLeague(league);
         service.setInGameName(inGameName);
-        service.setRemoveDate(5);
+        service.setRemoveDate(removeDate);
 
         //Opel url connection and set crud property
         HttpURLConnection postUrlConnection = getHttpURLConnection(createServiceURL, "POST");
 
         ObjectMapper mapper = new ObjectMapper();
         String jsonUser = mapper.writeValueAsString(service);
+        service.setTitle("");
+        service.setInGameName("");
+        service.setRemoveDate(0);
 
         PrintWriter out = new PrintWriter(postUrlConnection.getOutputStream());
         out.println(jsonUser);
@@ -103,6 +106,7 @@ public class ServiceEndPoint implements Serializable{
         if(postUrlConnection.getResponseCode()!=200){
             throw new IOException("API Error. Incorrect response from server.");
         }
+
 
     }
 
@@ -180,5 +184,13 @@ public class ServiceEndPoint implements Serializable{
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public long getRemoveDate() {
+        return removeDate;
+    }
+
+    public void setRemoveDate(long removeDate) {
+        this.removeDate = removeDate;
     }
 }

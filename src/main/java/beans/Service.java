@@ -14,7 +14,7 @@ public class Service implements Serializable {
     private String inGameName;
     private String ServiceType;
     private String League;
-    private int removeDate;
+    private long removeDate;
 
     public String getTitle() {
         return title;
@@ -48,11 +48,11 @@ public class Service implements Serializable {
         League = league;
     }
 
-    public int getRemoveDate() {
+    public long getRemoveDate() {
         return removeDate;
     }
 
-    public void setRemoveDate(int removeDate) {
+    public void setRemoveDate(long removeDate) {
         this.removeDate = removeDate;
     }
 }

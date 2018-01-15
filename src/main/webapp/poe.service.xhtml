@@ -18,6 +18,8 @@
     <div>
         <h1 style="padding-top: 1em; padding-left: 1em">Path of Exile Services</h1>
         <hr></hr>
+        <p style="font-size: 2.5em; color: gray; font-family: Arial, Helvetica">[  allan please add advertisement  ]</p>
+        <hr></hr>
     </div>
 
     <div style="background-color: black">
@@ -92,10 +94,14 @@
                             <div class="MenuInnards">
                                 <p:panel style="background-color: #383838">
                                 <p:outputLabel for="titleInput" value="Description:"></p:outputLabel>
-                                <h:inputTextarea id="titleInput" value="#{endPoint.title}"></h:inputTextarea>
+                                <h:inputTextarea id="titleInput" required="true" value="#{endPoint.title}"></h:inputTextarea>
                                 <hr></hr>
                                 <p:outputLabel for="inGameNameInput" value="Ingame Name:"></p:outputLabel>
-                                <h:inputText id="inGameNameInput" value="#{endPoint.inGameName}"></h:inputText>
+                                <h:inputText id="inGameNameInput" required="true" value="#{endPoint.inGameName}"></h:inputText>
+                                    <hr></hr>
+                                    <p:outputLabel for="hours" value="Uptime(Hours):"></p:outputLabel>
+                                    <p:inputText maxlength="1" size="1" required="true" id="hours" value="#{endPoint.removeDate}"></p:inputText>
+                                    <p:slider for="hours" step="1" maxValue="5" value="#{endPoint.removeDate}" style="margin-top: 0.3em"></p:slider>
                                 </p:panel>
 
                                 <p:commandButton class="grabPromo" style="margin-top: 1em; color: gray" id="createButton" value="Create" action="#{endPoint.createService}" onclick="createSuccess()"></p:commandButton>
